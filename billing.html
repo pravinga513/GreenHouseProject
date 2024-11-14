@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Page - Greenhouse Management System</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+</head>
+
+<body>
+    <header class="headerimg-cart overlay">
+        <div class="hero-content">
+            <div style="margin-top: 20px;padding-top: 30px;" class="hero-text">
+                <h1>Cart</h1>
+            </div><!-- /.hero-text -->
+        </div><!-- /.hero-content -->
+        
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact Us</a>
+        <a  id="login-link"  href="login.html">Login</a>            
+
+        <a style="position: absolute ;right: 10px;" href="admin.html">Admin Login</a>
+    </nav> 
+    <div class="container">
+        <h2>Cart Products</h2>
+        <div id="cart-products"></div>
+        <div id="total-amount" class="total"></div>
+        <button id="order-button">Place Order</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Greenhouse Management System. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Order Confirmation Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="close-btn">&times;</span>
+            <h2>Confirm Order</h2>
+            <p>Please provide your details:</p>
+            <form id="order-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+                <label for="address">Address:</label>
+                <input type="text" id="address" required>
+                <label for="contact">Contact No:</label>
+                <input type="text" id="contact" required>
+                <button type="button" id="confirm-button">Confirm Details</button>
+            </form>
+        </div>
+    </div>
+
+<!-- Thank You Popup -->
+<div id="thank-you-popup" class="popup">
+    <div class="popup-content">
+        
+        <h2>Thank You, <span id="thank-you-name"></span>!</h2>
+        <p>Your order has been placed successfully.</p>
+        <h3>Order Summary:</h3>
+        <div id="order-summary"></div>
+        <button onclick="document.location='index.html'" id="home-button">Go to Home</button>
+    </div>
+</div>
+  <!-- Login Popup -->
+  <div id="login-popup" class="popup">
+    <div class="popup-content">
+        <span class="close" id="close-login-popup">&times;</span>
+        <h2>Login To Order</h2>
+     
+            <button onclick="document.location='login.html'" type="submit">Login</button>
+    <br><br>
+        <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+    </div>
+</div>
+
+
+<script src="billing.js"></script> <!-- Link to the JavaScript file -->
+
+</body>
+
+</html>
+

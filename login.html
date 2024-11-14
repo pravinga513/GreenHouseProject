@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenhouse Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .message {
+            text-align: center;
+            margin-top: 10px;
+            color: red;
+        }
+        .success-message {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <header class="headerimg-fea overlay">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Login</h1>
+            </div><!-- /.hero-text -->
+        </div><!-- /.hero-content -->
+        
+    </header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="features.html">Features</a>
+            <a href="product.html">Products</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="billing.html" id="cart-link">Cart (<span id="cart-count">0</span>)</a>
+            <a style="position: absolute ;right: 10px;" href="admin.html">Admin Login</a>
+        </nav> 
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Username" required />
+            <input type="password" id="login-password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+        <div class="message" id="login-message"></div><br><br>
+        <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+    </div>
+
+    <script>
+        // IndexedDB setup
+        let db;
+        const request = indexedDB.open('greenhouseDB', 1);
+
+        request.onupgradeneeded = function(event) {
+            db = event.target.result;
+            const objectStore = db.createObjectStore('users', { keyPath: 'username' });
+            objectStore.createIndex('password', 'password', { unique: false });
+        };
+
+        request.onsuccess = function(event) {
+            db = event.target.result;
+            updateCartCount();
+        };
+
+        request.onerror = function(event) {
+            console.error('Database error:', event.target.error);
+        };
+
+        // Handle login form submission
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            loginUser(username, password); // Call your loginUser function here
+        });
+
+        // Login user function
+        function loginUser(username, password) {
+            const transaction = db.transaction(['users'], 'readonly');
+            const objectStore = transaction.objectStore('users');
+            const request = objectStore.get(username);
+
+            request.onsuccess = function(event) {
+                const user = event.target.result;
+
+                if (user && user.password === password) {
+                    // Successful login
+                    user.isLoggedIn = true; // Set user as logged in
+                    const updateTransaction = db.transaction(['users'], 'readwrite');
+                    const updateStore = updateTransaction.objectStore('users');
+                    updateStore.put(user); // Update user data in IndexedDB
+                    
+                    // Show success message
+                    document.getElementById('login-message').textContent = 'Logged In Successfully!';
+                    document.getElementById('login-message').classList.add('success-message');
+                    
+                    // Redirect after a short delay
+                    setTimeout(() => {
+                        window.location.href = 'index.html'; // Redirect to home page
+                    }, 1000);
+                } else {
+                    // Login failed
+                    document.getElementById('login-message').textContent = 'Invalid username or password!';
+                    document.getElementById('login-message').classList.remove('success-message');
+                }
+            };
+
+            request.onerror = function() {
+                console.error('Error retrieving user:', event.target.error);
+                document.getElementById('login-message').textContent = 'Error logging in. Please try again.';
+                document.getElementById('login-message').classList.remove('success-message');
+            };
+        }
+
+
+        function updateCartCount() {
+    const transaction = db.transaction(['cart'], 'readonly');
+    const objectStore = transaction.objectStore('cart');
+    const countRequest = objectStore.count();
+
+    countRequest.onsuccess = function() {
+        document.getElementById('cart-count').textContent = countRequest.result;
+    };
+}
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Greenhouse Management System. All Rights Reserved.</p>
+        <div>
+            <a href="#contact" style="color: white; text-decoration: none;">Contact Us</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
