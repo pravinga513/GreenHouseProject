@@ -6,7 +6,23 @@
     <title>Greenhouse Management System</title>
     <link rel="stylesheet" href="https://pravinga513.github.io/GreenHouseProject/styles.css"> <!-- Link to external CSS file -->
     <style>
-        /* Container for the dashboard */
+ 
+
+/* Responsive layout for larger screens */
+@media (min-width: 600px) {
+  .dashboard-item {
+    flex: 1 1 calc(33.33% - 20px); /* Three items per row on larger screens */
+  }
+}
+
+/* Styling for table to allow sideways scrolling on mobile */
+.responsive-table {
+  overflow-x: auto; /* Enables horizontal scroll */
+  display: block; /* Ensures table is scrollable on small screens */
+  width: 100%;
+}
+
+             /* Container for the dashboard */
 .dashboard-container {
   display: flex;
   flex-wrap: wrap; /* Allows items to wrap to the next row if needed */
@@ -23,33 +39,6 @@
   border: 1px solid #ddd;
   border-radius: 8px;
 }
-
-/* Responsive layout for larger screens */
-@media (min-width: 600px) {
-  .dashboard-item {
-    flex: 1 1 calc(33.33% - 20px); /* Three items per row on larger screens */
-  }
-}
-
-/* Styling for table to allow sideways scrolling on mobile */
-.responsive-table {
-  overflow-x: auto; /* Enables horizontal scroll */
-  display: block; /* Ensures table is scrollable on small screens */
-  width: 100%;
-}
-
-        .dashboard {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-        .dashboard div {
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 5px;
-            width: 150px;
-            text-align: center;
-        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -104,7 +93,10 @@
         .success-message {
             color: green;
         }
-   
+    .table-responsive {
+            overflow-x: auto; /* Enable horizontal scrolling */
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -193,7 +185,7 @@
 </div>
 
         <!-- Orders Table -->
-        <table>
+        <table  class="table-responsive">
             <thead>
                 <tr>
                     <th>Order ID</th>
