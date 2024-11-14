@@ -6,6 +6,38 @@
     <title>Greenhouse Management System</title>
     <link rel="stylesheet" href="https://pravinga513.github.io/GreenHouseProject/styles.css"> <!-- Link to external CSS file -->
     <style>
+        /* Container for the dashboard */
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next row if needed */
+  gap: 10px; /* Space between items */
+}
+
+/* Dashboard item styling */
+.dashboard-item {
+  flex: 1 1 100%; /* Full width on mobile by default */
+  min-width: 150px; /* Set a minimum width for each item */
+  padding: 10px;
+  text-align: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Responsive layout for larger screens */
+@media (min-width: 600px) {
+  .dashboard-item {
+    flex: 1 1 calc(33.33% - 20px); /* Three items per row on larger screens */
+  }
+}
+
+/* Styling for table to allow sideways scrolling on mobile */
+.responsive-table {
+  overflow-x: auto; /* Enables horizontal scroll */
+  display: block; /* Ensures table is scrollable on small screens */
+  width: 100%;
+}
+
         .dashboard {
             display: flex;
             justify-content: space-around;
@@ -118,24 +150,24 @@
   <input type="file" id="import-file" style="display: none;" accept=".json" />
   
         <!-- Dashboard Summary -->
-        <div class="dashboard">
-            <div>
+        <div class="dashboard-container">
+            <div class="dashboard-item">
                 <h3>Total Orders</h3>
                 <p id="total-orders">0</p>
             </div>
-            <div>
+            <div class="dashboard-item">
                 <h3>Completed Orders</h3>
                 <p id="completed-orders">0</p>
             </div>
-            <div>
+            <div class="dashboard-item">
                 <h3>Cancelled Orders</h3>
                 <p id="cancelled-orders">0</p>
             </div>
-            <div>
+            <div class="dashboard-item">
                 <h3>Pending Orders</h3>
                 <p id="pending-orders">0</p>
             </div>
-            <div>
+            <div class="dashboard-item">
                 <h3>This Month Orders</h3>
                 <p id="this-month-orders">0</p>
             </div>
