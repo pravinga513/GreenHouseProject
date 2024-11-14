@@ -6,6 +6,7 @@
     <title>Greenhouse Management System</title>
     <link rel="stylesheet" href="https://pravinga513.github.io/GreenHouseProject/styles.css"> <!-- Link to external CSS file -->
     <style>
+        /* Dashboard styling */
         .dashboard {
             display: flex;
             justify-content: space-around;
@@ -18,6 +19,8 @@
             width: 150px;
             text-align: center;
         }
+
+        /* Table styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -26,11 +29,29 @@
         table, th, td {
             border: 1px solid #ccc;
             padding: 10px;
-            text-align: left;
         }
         th, td {
             text-align: center;
         }
+
+        /* Responsive container for table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        /* Mobile responsive styling */
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            .dashboard div {
+                width: 90%;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Login styling */
         .login-container {
             max-width: 400px;
             margin: auto;
@@ -72,7 +93,6 @@
         .success-message {
             color: green;
         }
-   
     </style>
 </head>
 <body>
