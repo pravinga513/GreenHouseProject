@@ -6,203 +6,190 @@
     <title>Greenhouse Management System</title>
     <link rel="stylesheet" href="https://pravinga513.github.io/GreenHouseProject/styles.css"> <!-- Link to external CSS file -->
     <style>
- 
+      .dashboard {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          margin-bottom: 20px;
+      }
+      .dashboard div {
+          border: 1px solid #ccc;
+          padding: 20px;
+          border-radius: 5px;
+          width: 150px;
+          text-align: center;
+          margin: 10px;
+      }
+      .table-responsive {
+          overflow-x: auto; /* Enable horizontal scrolling */
+          width: 100%;
+      }
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 20px;
+      }
+      table, th, td {
+          border: 1px solid #ccc;
+          padding: 10px;
+          text-align: left;
+      }
+      th, td {
+          text-align: center;
+      }
+      .login-container {
+          max-width: 400px;
+          margin: auto;
+          margin-top: 15px;
+          margin-bottom: 15px;
+          padding: 20px;
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+          text-align: center;
+      }
+      input[type="text"],
+      input[type="password"] {
+          width: 100%;
+          padding: 10px;
+          margin: 10px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+      button {
+          width: 100%;
+          padding: 10px;
+          background-color: #5cb85c;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+      button:hover {
+          background-color: #4cae4c;
+      }
+      .message {
+          text-align: center;
+          margin-top: 10px;
+          color: red;
+      }
+      .success-message {
+          color: green;
+      }
 
-/* Responsive layout for larger screens */
-@media (min-width: 600px) {
-  .dashboard-item {
-    flex: 1 1 calc(33.33% - 20px); /* Three items per row on larger screens */
-  }
-}
-
-/* Styling for table to allow sideways scrolling on mobile */
-.responsive-table {
-  overflow-x: auto; /* Enables horizontal scroll */
-  display: block; /* Ensures table is scrollable on small screens */
-  width: 100%;
-}
-
-             /* Container for the dashboard */
-.dashboard-container {
-   display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-bottom: 20px;
-}
-
-/* Dashboard item styling */
-.dashboard-item {
-  flex: 1 1 100%; /* Full width on mobile by default */
-  min-width: 150px; /* Set a minimum width for each item */
-  padding: 10px;
-  text-align: center;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        th, td {
-            text-align: center;
-        }
-        .login-container {
-            max-width: 400px;
-            margin: auto;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #4cae4c;
-        }
-        .message {
-            text-align: center;
-            margin-top: 10px;
-            color: red;
-        }
-        .success-message {
-            color: green;
-        }
-    .table-responsive {
-            overflow-x: auto; /* Enable horizontal scrolling */
-            width: 100%;
-        }
-    </style>
+      /* Media query for mobile screens */
+      @media (max-width: 768px) {
+          .dashboard {
+              flex-direction: column;
+              align-items: center;
+          }
+          .dashboard div {
+              width: 90%;
+              margin: 10px 0;
+          }
+      }
+  </style>
 </head>
 <body>
-    <header class="headerimg-cart overlay">
-        <div class="hero-content">
-            <div style="margin-top: 20px;padding-top: 30px;" class="hero-text">
-                <h1>Welcome to Admin</h1>
-            </div><!-- /.hero-text -->
-        </div><!-- /.hero-content -->
-        
-    </header>
+  <header class="headerimg-cart overlay">
+      <div class="hero-content">
+          <div style="margin-top: 20px;padding-top: 30px;" class="hero-text">
+              <h1>Welcome to Admin</h1>
+          </div>
+      </div>
+  </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="features.html">Features</a>
-        <a href="about.html">About</a>
-        <a href="product.html">Products</a>
-        <a href="contact.html">Contact Us</a>
-        <a style="position: absolute ;right: 10px;" onclick="logout()" href="index.html">Logout</a>
-    </nav> 
-  
+  <nav>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="about.html">About</a>
+      <a href="product.html">Products</a>
+      <a href="contact.html">Contact Us</a>
+      <a style="position: absolute; right: 10px;" onclick="logout()" href="index.html">Logout</a>
+  </nav> 
 
-    <div id="login" class="container" style="text-align:center">
-         <div class="login-container">
-        <h2>Admin Login</h2>
-        <form id="login-form" onsubmit="validateLogin(event)">
-            <input type="text" id="userId" placeholder="Username" required />
-            <input type="password" id="password" placeholder="Password" required />
-            <button type="submit">Login</button>
-            <p>Username-PG513 Password-123</p>
-        </form>
-        
-        <div class="message" id="login-message"></div><br><br>
-    </div></div>
+  <div id="login" class="container" style="text-align:center">
+       <div class="login-container">
+      <h2>Admin Login</h2>
+      <form id="login-form" onsubmit="validateLogin(event)">
+          <input type="text" id="userId" placeholder="Username" required />
+          <input type="password" id="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+          <p>Username-PG513 Password-123</p>
+      </form>
+      
+      <div class="message" id="login-message"></div><br><br>
+  </div></div>
 
-    <div id="admin" class="container" style="text-align:center; display: none;">
-        <h1 style="margin-bottom: 10px;">Admin Dashboard</h1>
-  <!-- Add Export and Import buttons in your admin HTML -->
-  <button style="display: inline-block; width: 150px;" onclick="exportData()">Export Data</button>
-  <button style="display: inline-block;width: 150px;" onclick="importData()">Import Data</button>
-  <br><br>
-  <!-- Hidden input for file import -->
-  <input type="file" id="import-file" style="display: none;" accept=".json" />
-  <br/>
-        <!-- Dashboard Summary -->
-        <div class="dashboard-container">
-            <div class="dashboard-item">
-                <h3>Total Orders</h3>
-                <p id="total-orders">0</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>Completed Orders</h3>
-                <p id="completed-orders">0</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>Cancelled Orders</h3>
-                <p id="cancelled-orders">0</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>Pending Orders</h3>
-                <p id="pending-orders">0</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>This Month Orders</h3>
-                <p id="this-month-orders">0</p>
-            </div>
-        </div>
-          <br/>
+  <div id="admin" class="container" style="text-align:center; display: none;">
+      <h1 style="margin-bottom: 10px;">Admin Dashboard</h1>
 
-<!-- Filters -->
-<div style="margin-bottom: 10px;">
-    <label for="product-filter">Filter by Product:</label>
-    <select id="product-filter" onchange="filterOrders()">
-        <option value="">Show All</option>
-        <!-- Options will be populated dynamically -->
-    </select>
+      <button style="display: inline-block; width: 150px;" onclick="exportData()">Export Data</button>
+      <button style="display: inline-block;width: 150px;" onclick="importData()">Import Data</button>
+      <br><br>
 
-    <label for="status-filter">Filter by Status:</label>
-    <select id="status-filter" onchange="filterOrders()">
-        <option value="">Show All</option>
-        <option value="pending">Pending</option>
-        <option value="completed">Completed</option>
-        <option value="cancelled">Cancelled</option>
-        <option value="Unassigned">Unassigned</option>
-    </select>
-</div>
+      <input type="file" id="import-file" style="display: none;" accept=".json" />
 
-        <!-- Orders Table -->
-        <table  class="table-responsive">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Order Date</th>
-                    <th>Customer Name</th>
-                    <th>Product</th>
-                    <th>Contact No.</th>
-                    <th>Address</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="order-table-body">
-                <!-- Orders will be populated here dynamically -->
-            </tbody>
-        </table>
+      <div class="dashboard">
+          <div>
+              <h3>Total Orders</h3>
+              <p id="total-orders">0</p>
+          </div>
+          <div>
+              <h3>Completed Orders</h3>
+              <p id="completed-orders">0</p>
+          </div>
+          <div>
+              <h3>Cancelled Orders</h3>
+              <p id="cancelled-orders">0</p>
+          </div>
+          <div>
+              <h3>Pending Orders</h3>
+              <p id="pending-orders">0</p>
+          </div>
+          <div>
+              <h3>This Month Orders</h3>
+              <p id="this-month-orders">0</p>
+          </div>
+      </div>
+
+      <div style="margin-bottom: 10px;">
+          <label for="product-filter">Filter by Product:</label>
+          <select id="product-filter" onchange="filterOrders()">
+              <option value="">Show All</option>
+          </select>
+
+          <label for="status-filter">Filter by Status:</label>
+          <select id="status-filter" onchange="filterOrders()">
+              <option value="">Show All</option>
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+              <option value="Unassigned">Unassigned</option>
+          </select>
+      </div>
+
+      <!-- Orders Table with Horizontal Scroll on Mobile -->
+      <div class="table-responsive">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Order ID</th>
+                      <th>Order Date</th>
+                      <th>Customer Name</th>
+                      <th>Product</th>
+                      <th>Contact No.</th>
+                      <th>Address</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="order-table-body">
+              </tbody>
+          </table>
+      </div>
 
         <script>
   // Function to validate login
