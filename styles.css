@@ -1,5 +1,5 @@
 .headerimg { 
-    background: url(GreenHouseProject/Img/Hero.jpg) no-repeat center / cover; 
+    background: url(Img/Hero.jpg) no-repeat center / cover; 
     height: 600px;
     width: 100%;
     display: table;
@@ -7,7 +7,7 @@
 }
 
 .headerimg-about { 
-    background: url(GreenHouseProject/Img/Portfolio-hero.jpg) no-repeat center / cover; 
+    background: url(Img/Portfolio-hero.jpg) no-repeat center / cover; 
     height: 100%;
     width: 100%;
     display: table;
@@ -15,7 +15,7 @@
     position: relative;
 }
 .headerimg-fea { 
-    background: url(GreenHouseProject/Img/Portfolio-12.jpg) no-repeat center / cover; 
+    background: url(Img/Portfolio-12.jpg) no-repeat center / cover; 
     height: 300px;
     width: 100%;
     display: table;
@@ -23,7 +23,7 @@
     position: relative;
 }
 .headerimg-cart { 
-    background: url(GreenHouseProject/Img/Blog-hero.jpg) no-repeat center / cover; 
+    background: url(Img/Blog-hero.jpg) no-repeat center / cover; 
     height: 300px;
     width: 100%;
     display: table;
